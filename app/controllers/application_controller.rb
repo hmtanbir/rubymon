@@ -16,9 +16,16 @@ private
       end
     end
 
+
+  # Confirms the correct user.
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end  
+
 ## helper method
     helper_method :logged_in_user
-
+    helper_method :correct_user
 
 
 end
