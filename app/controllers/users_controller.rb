@@ -24,8 +24,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      redirect_to @user,notice:'An user was successfully registered.'
     else
       render 'new'
     end
@@ -38,8 +37,7 @@ class UsersController < ApplicationController
   # put /users/1/update
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to @user,notice:'User was successfully updated.'
     else
       render 'edit'
     end
@@ -48,8 +46,7 @@ class UsersController < ApplicationController
   # delete /users/1
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
-    redirect_to users_url
+    redirect_to users_url,notice:'User was successfully destroyed.'
   end
 
 
@@ -57,7 +54,11 @@ class UsersController < ApplicationController
 
 # get signup
   def signup
+    if not logged_in?
     @user = User.new
+    else
+      redirect_to root_url ,notice: "Already signed in !"
+    end
   end
 
 
