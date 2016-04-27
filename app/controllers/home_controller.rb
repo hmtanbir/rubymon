@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
-layout 'layouts/adminLayout',except: :index	
+layout 'layouts/adminLayout',except: :index
+before_action :logged_in_user, only: :admin
+  
   def index
   end
 
