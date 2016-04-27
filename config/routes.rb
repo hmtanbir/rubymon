@@ -15,6 +15,10 @@ get 'signup',to:'users#signup',as:'signup'
 post 'signup',to:'users#create'
 resources :users
 
+## for facebook
+get 'auth/:provider/callback',to: 'users#facebook_create'
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

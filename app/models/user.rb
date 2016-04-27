@@ -37,4 +37,24 @@ class User < ActiveRecord::Base
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
+
+## for registration by facebook information
+  ## for sign in
+  def self.sign_in_from_omniauth(auth)
+    find_by(provider: auth['provider'],uid: auth['uid']) ||      create_user_from_omniauth(auth)
+  end
+
+  ## for registration by facebook information
+  def self.create_user_from_omniauth(auth)
+    create!(provider: auth['provider'],uid: auth['uid'],name: auth['info']['name'],email: auth['info']['email'],password:'user123')
+  end
+
+
+
+
+
+
+
+
+
 end

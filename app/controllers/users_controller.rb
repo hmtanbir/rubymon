@@ -59,12 +59,22 @@ class UsersController < ApplicationController
   def signup
     @user = User.new
   end
+
+
+## registration by facebook
+  def facebook_create
+    auth=request.env['omniauth.auth']
+    session[:omniauth]=auth.except('extra')
+    user=User.sign_in_from_omniauth(auth)
+    session[:user_id]=user.id
+    redirect_to admin_url,notice:'You have logged in rubymon by facebook successfully !'
+  end
+  
   
   private
     
     def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+      params.require(:user).permit(:name, :email, :password,:password_confirmation)
     end
     
     

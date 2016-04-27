@@ -1,10 +1,11 @@
 <% provide(:title, 'Log in') %>
-<h1>Log in</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_path) do |f| %>
-      
+<div class="container">
+
+    <%= form_for(:session, url: login_path,html:{class: 'form-signin'}) do |f| %>
+  <h2 class="form-signin-heading">Rails administration</h2>
+  <div class="login-wrap">
+            <div class="user-login-info">
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
       
@@ -15,10 +16,17 @@
         <%= f.check_box :remember_me %>
         <span>Remember me on this computer</span>
       <% end %>
+      </div>
       
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <%= f.submit "Log in", class: "btn btn-login btn-block" %>
+<a href="<%= root_path %>auth/facebook" name='facebook' class="btn btn-facebook btn-block">Login with Facebook</a>
+  <div class="registration">Don't have an account yet? <%= link_to 'Registration',signup_path %></div>
+
+
+        </div>
+
+
     <% end %>
     
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-  </div>
 </div>
+
