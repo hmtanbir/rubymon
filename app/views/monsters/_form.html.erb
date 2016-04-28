@@ -57,7 +57,7 @@
                 <% if Team.all.empty? %>
                     <%= link_to 'Create Team At First',new_team_path,class:'btn btn-danger' %>
                     <% else %>
-                <%= f.collection_select :team_id,Team.all,:id, :name, {prompt: true},{class:'form-control'} %>
+                <%= f.collection_select :team_id,current_user.teams,:id, :name, {prompt: true},{class:'form-control'} %>
                 <% end %>
               </div>
             </div>
