@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 # Confirms the correct user.
   def correct_user
     @user = User.find(params[:id])
-    redirect_to admin_url,alert:'You do not ahve any permission to access this section ! Thank you.' unless current_user?(@user)
+    redirect_to admin_url,alert:'You do not have any permission to access this section ! Thank you.' unless current_user?(@user)||is_admin?
   end
 
 ## helper method
