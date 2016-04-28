@@ -1,24 +1,26 @@
 Rails.application.routes.draw do
 
+  resources :monsters
+  resources :teams
+  resources :types
 ## routes for home controller
-root 'home#index'
-get 'admin',to:'home#admin',as:'admin'
+  root 'home#index'
+  get 'admin', to: 'home#admin', as: 'admin'
 
 ## routes for sessions controller
-get 'login',to: 'sessions#new',as:'login'
-post 'login',to: 'sessions#create'
-get 'logout',to:'sessions#destroy',as:'logout'
-resources :sessions,only:[:new,:create,:destroy]
+  get 'login', to: 'sessions#new', as: 'login'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+  delete 'logout', to: 'sessions#destroy'
+  resources :sessions, only: [:new, :create, :destroy]
 
 ## routes for users controller
-get 'signup',to:'users#signup',as:'signup'
-post 'signup',to:'users#create'
-resources :users
+  get 'signup', to: 'users#signup', as: 'signup'
+  post 'signup', to: 'users#create'
+  resources :users
 
 ## for facebook
-get 'auth/:provider/callback',to: 'users#facebook_create'
-
-
+  get 'auth/:provider/callback', to: 'users#facebook_create'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
