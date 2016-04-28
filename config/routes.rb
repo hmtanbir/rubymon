@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :monsters
-  resources :teams
-  resources :types
 ## routes for home controller
 root 'home#index'
 get 'admin',to:'home#admin',as:'admin'
